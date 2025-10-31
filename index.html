@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GEIGIA Calcu Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>GEIGIA Calcu Pro</h1>
+    <p class="subtitle">Calculadora de viabilidad productiva en invernadero</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Parámetros</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="area">Área del proyecto (m²)</label>
+          <input id="area" type="number" min="1" step="0.1" placeholder="Ej. 500" />
+          <small id="areaError" class="error" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="tipo">Tipo de producción</label>
+          <select id="tipo">
+            <!-- Opciones dinámicas desde data.js -->
+          </select>
+        </div>
+      </div>
+
+      <div id="customParams" class="custom hidden" aria-hidden="true">
+        <h3>Parámetros personalizados</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="densidad">Densidad (organismos/plantas por m²)</label>
+            <input id="densidad" type="number" min="0.01" step="0.01" placeholder="Ej. 2.5" />
+          </div>
+          <div class="field">
+            <label for="rendimiento">Rendimiento por m² (por ciclo)</label>
+            <input id="rendimiento" type="number" min="0.01" step="0.01" placeholder="Ej. 12" />
+          </div>
+          <div class="field">
+            <label for="unidad">Unidad de rendimiento</label>
+            <select id="unidad">
+              <option value="kg">kg</option>
+              <option value="unidades">unidades</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ciclo">Duración del ciclo (días)</label>
+            <input id="ciclo" type="number" min="1" step="1" placeholder="Ej. 90" />
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="calcular" class="btn-primary" type="button" aria-label="Calcular producción">Calcular</button>
+      </div>
+    </section>
+
+    <section id="resultsCard" class="card hidden" aria-hidden="true">
+      <h2>Resultados</h2>
+      <div id="results" class="results">
+        <div class="result-row">
+          <span class="label">Cantidad total (plantas/organismos):</span>
+          <span class="value" id="rPlantas">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Rendimiento promedio por m²:</span>
+          <span class="value" id="rRendimientoM2">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Duración del ciclo:</span>
+          <span class="value" id="rCiclo">—</span>
+        </div>
+        <div class="divider"></div>
+        <div class="result-row">
+          <span class="label">Producción en primer ciclo:</span>
+          <span class="value count-up" id="rPrimerCiclo">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Producción al final del año:</span>
+          <span class="value count-up" id="rAnual">—</span>
+        </div>
+        <div class="footnote" id="rCiclosNota"> </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Los valores son estimaciones de referencia. Ajuste parámetros según su sistema.</small>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
